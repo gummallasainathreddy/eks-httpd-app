@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: 101275806917.dkr.ecr.eu-west-2.amazonaws.com/ecr-sai
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "$BUILD_NUMBER"
 
 imagePullSecrets: []
 nameOverride: ""
