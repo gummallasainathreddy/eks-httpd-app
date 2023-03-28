@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 101275806917.dkr.ecr.eu-west-2.amazonaws.com/ecr-sai:latest
+  repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
