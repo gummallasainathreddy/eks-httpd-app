@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "platforms": [
+    "github"
+  ],
+  "autodiscover": true
+}
