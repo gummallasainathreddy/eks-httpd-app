@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in $(find -name values.yaml); do
+for i in $(find . -type f -name "values.yaml"); do
     echo "-------------------------"
     echo "$i"
     echo "-------------------------"
