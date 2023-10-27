@@ -1,1 +1,7 @@
+ingress:
+  image: ingress
+  imageTag: 1.4.0
 
+platform:
+  image: platform
+  imageTag: 1.6.0
