@@ -1,1 +1,21 @@
+name: Get current image versions
 
+on:
+  schedule:
+    # runs tests every day at 4am
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  nightly:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: clone repository
+        uses: actions/checkout@v2
+
+      - name: set execute permission on ./getcurrentversions.sh
+        run: |
+          chmod +x ./getcurrentversions.sh
+      - name: Run the script
+        run: |
+          bash -e ./getcurrentversions.sh
