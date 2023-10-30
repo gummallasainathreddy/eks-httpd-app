@@ -2,9 +2,10 @@
 ./apache/values.yaml
 -------------------------
 image: nginx
-# Overrides the image tag whose default is the chart appVersion.
 imageTag: 1.4.1
-imagePullSecrets: []
+# Overrides the image tag whose default is the chart appVersion.
+#imageTag: 1.4.1
+#imagePullSecrets: []
 -------------------------
 ./tomcat/values.yaml
 -------------------------
