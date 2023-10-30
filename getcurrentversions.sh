@@ -12,7 +12,8 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "-------------------------" >> $output_file
     cat "$i" | grep 'imageTag\|#renovate' | sed -e 's/^[ \t]*//' >> $output_file
 done
-if ! git diff --quiet -- "$OUTPUT_FILE"; then
+git diff --quiet -- "$output_file"
+if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
     git add "$output_file"
     git config --global user.email "github-actions[bot]@users.noreply.github.com"
