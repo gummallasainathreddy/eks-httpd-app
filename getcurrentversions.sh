@@ -6,15 +6,15 @@ output_file="output.md"
 # Clear the contents of the output file
 > $output_file
 
-# Create a Markdown table header
-echo "| Image | Image Tag |" >> "$output_file"
-echo "|-------|-----------|" >> "$output_file"
 for i in $(find . -type f -name "values.yaml"); do
     echo "-------------------------" >> $output_file
     echo "$i" >> $output_file
     echo "-------------------------" >> $output_file
     image=""
     image_tag=""
+    # Create a Markdown table header
+    echo "| Image | Image Tag |" >> "$output_file"
+    echo "|-------|-----------|" >> "$output_file"
 
     while IFS= read -r line; do
         # Remove leading spaces and tabs
