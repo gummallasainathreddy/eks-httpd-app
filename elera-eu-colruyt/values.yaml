@@ -1,0 +1,62 @@
+eu:
+  nameOverride: elera-platform
+  elera_common:
+    dockerRegistry:
+      repository: tgcseuelera.azurecr.io
+      imagePullSecrets:
+        - name: tgcseuelera
+
+  elera_ingress:
+    enabled: false
+
+  elera_services:
+    elera_admin_ui:
+      image: elera-platform-admin-ui-all-eu
+      #renovate: image=tgcseuelera.azurecr.io/elera-platform-admin-ui-all-eu
+      imageTag: 1.19.0-2023.08.07-494-ddc4804
+
+    elera_platform:
+      image: elera-platform-europe
+      #renovate: image=tgcseuelera.azurecr.io/elera-platform-europe
+      imageTag: 1.19.0-2023.08.07-494-ddc4804
+      imageLayered: true
+      readinessProbe:
+        initialDelaySeconds: 60
+      command:
+        extraArguments:
+          - mock.gateways=true
+          - tgcp.mock.shipping=true
+
+    elera_client:
+      image: colruyt-elera-selfservice-client
+      #renovate: image=tgcseuelera.azurecr.io/colruyt-elera-selfservice-client
+      imageTag: 0.18.0-2023.08.30-435-49bfb38
+      enabled: true
+      extraNginxConf:
+        endOfServerSection: |
+          # Add missing authorization entries
+          location /authorization/alternateLogin {
+            proxy_pass      http://elera-platform-elera-platform:8080/authorization/alternateLogin;
+          }
+          location /authorization/config {
+            proxy_pass      http://elera-platform-elera-platform:8080/authorization/config;
+          }
+
+  elera_nginx:
+    image: elera-client-nginx
+    #renovate: image=tgcseuelera.azurecr.io/elera-client-nginx
+    imageTag: 1.4.0-2023.8.3-97-fa6b05a
+    disableLoadBalancer: true
+
+  data_loader:
+    enabled: false
+    image: elera-platform-data-loader-europe
+    #renovate: image=tgcseuelera.azurecr.io/elera-platform-data-loader-europe
+    imageTag: 1.19.0-2023.08.07-494-ddc4804
+    imageLayered: false
+    command:
+      extraArguments:
+        - cache.refresh=false
+        - data-seeder.sets=elera/base-eu,colruyt/colruyt/base,elera/demo-eu/elera-pay,elera/demo-eu/receipt,colruyt/colruyt/demo
+        - changeplans.service=elera-platform-elera-platform
+        - changeplans.port=8080
