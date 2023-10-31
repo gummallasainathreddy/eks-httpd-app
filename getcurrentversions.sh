@@ -16,10 +16,13 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "| Image | Image Tag |" >> "$output_file"
     echo "|-------|-----------|" >> "$output_file"
 
-    cat "$i" | grep 'image|imageTag\|#renovate' | sed -e 's/^[ \t]*//'
-    #echo -e "\n" >> "$output_file"
-    # Print the extracted information as a row in the table
-    echo "| $image | $image_tag |" >> "$output_file"
+    # Extract lines containing "image" and "imageTag"
+    cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | while IFS= read -r line; do
+        if [[ $line =~ ^image:\ (.+) ]]; then
+            image="${BASH_REMATCH[1]}"
+        elif [[ $line =~ ^imageTag:\ (.+) ]]; then
+            image_tag="${BASH_REMATCH[1]}"
+        fi
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
