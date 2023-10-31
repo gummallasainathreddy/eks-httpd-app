@@ -12,10 +12,10 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "-------------------------" >> $output_file
     while IFS= read -r line; do
         if [[ $line =~ (imageTag|image|[#]renovate) ]]; then
-            echo "$line" | sed -e 's/^[ \t]*//' >> "$OUTPUT_FILE"
+            echo "$line" | sed -e 's/^[ \t]*//' >> "$output_file"
         fi
     done < "$i"
-    echo -e "\n" >> "$OUTPUT_FILE"
+    echo -e "\n" >> "$output_file"
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
