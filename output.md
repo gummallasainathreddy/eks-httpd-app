@@ -1,37 +1,5 @@
--------------------------
-./elera-eu-colruyt/values.yaml
--------------------------
-imagePullSecrets:
-image: elera-platform-admin-ui-all-eu
-imageTag: 1.19.0-2023.08.07-494-ddc4804
-image: platform
-imageTag: 1.19.0
-imageLayered: true
-image: elera-client
-imageTag: 0.18.0
-image: elera-client-nginx
-imageTag: 1.4.0
-image: data-loader
-imageTag: 1.19.0
-imageLayered: false
-
-
--------------------------
-./apache/values.yaml
--------------------------
-image: nginx
-imageTag: 1.4.1
-# Overrides the image tag whose default is the chart appVersion.
-#imageTag: 1.4.1
-#imagePullSecrets: []
-
-
--------------------------
-./tomcat/values.yaml
--------------------------
-image: ingress
-imageTag: 1.4.0
-image: platform
-imageTag: 1.6.0
-
-
+| Image | Image Tag |
+|-------|-----------|
+| data-loader | 1.19.0 |
+| nginx | 1.4.1 |
+| platform | 1.6.0 |
