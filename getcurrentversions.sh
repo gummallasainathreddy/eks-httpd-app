@@ -33,4 +33,4 @@ if ! git diff --quiet -- "$output_file"; then
     git push
 else
     echo "No changes to commit."
-fi 
+fi
