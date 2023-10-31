@@ -3,9 +3,9 @@
 # Define the output file name
 output_file="output.md"
 
-# Clear the contents of the output file
+# Clear the contents of the output file 
 > $output_file
-echo "Current Versions In Each Environment"
+echo "Current Versions In Each Environment" >> $output_file
 for i in $(find . -type f -name "values.yaml"); do
     echo "-------------------------" >> $output_file
     echo "$i" >> $output_file
