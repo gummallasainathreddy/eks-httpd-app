@@ -7,9 +7,9 @@ output_file="output.md"
 > $output_file
 echo "# Current Versions In Each Environment" >> $output_file
 for i in $(find . -type f -name "values.yaml"); do
-    echo "-------------------------" >> $output_file
+    #echo "-------------------------" >> $output_file
     echo "## $i" >> $output_file
-    echo "-------------------------" >> $output_file
+    #echo "-------------------------" >> $output_file
     image=""
     image_tag=""
     # Create a Markdown table header
