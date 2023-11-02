@@ -7,7 +7,7 @@ output_file="output.md"
 > "$output_file"
 
 for i in $(find -name values.yaml); do
-    #echo "------------------------------------" >> "$output_file"
+    echo "------------------------------------" >> "$output_file"
     echo "$i" >> "$output_file"
     #echo "------------------------------------" >> "$output_file"
     cat "$i" | grep 'image\|imageTag\|#renovate' | sed -e 's/^[ \t]*//' >> "$output_file"
