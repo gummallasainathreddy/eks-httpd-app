@@ -11,7 +11,7 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "## $i" >> $output_file
     #echo "-------------------------" >> $output_file
     image=""
-    imageTag=""
+    imageTag="
     # Create a Markdown table header
     echo "| Image | Image Tag |" >> "$output_file"
     echo "|-------|-----------|" >> "$output_file"
@@ -20,8 +20,8 @@ for i in $(find . -type f -name "values.yaml"); do
     cat "$i" | grep 'image|imageTag\|#renovate' | sed -e 's/^[ \t]*//'
     # Print the extracted information as a row in the table
     echo "| $image | $imageTag |" >> "$output_file"
-    echo "$image"
-    echo "$image_Tag"
+    echo "$image" >> "$output_file"
+    echo "$image_Tag" >> "$output_file"
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
