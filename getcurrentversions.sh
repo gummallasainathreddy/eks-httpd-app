@@ -10,8 +10,8 @@ for i in $(find . -type f -name "values.yaml"); do
     #echo "-------------------------" >> $output_file
     echo "## $i" >> $output_file
     #echo "-------------------------" >> $output_file
-    image=""
-    image_tag=""
+    image="sai"
+    image_tag="1.2.0"
     # Create a Markdown table header
     echo "| Image | Image Tag |" >> "$output_file"
     echo "|-------|-----------|" >> "$output_file"
