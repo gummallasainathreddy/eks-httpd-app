@@ -20,6 +20,8 @@ for i in $(find . -type f -name "values.yaml"); do
     cat "$i" | grep 'image|imageTag\|#renovate' | sed -e 's/^[ \t]*//'
     # Print the extracted information as a row in the table
     echo "| $image | $imageTag |" >> "$output_file"
+    echo "$image"
+    echo "$image_Tag"
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
