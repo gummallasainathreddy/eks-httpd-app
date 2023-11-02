@@ -3,27 +3,21 @@
 # Define the output file name
 output_file="output.md"
 
-# Clear the contents of the output file 
-> $output_file
-echo "# Current Versions In Each Environment" >> $output_file
-for i in $(find . -type f -name "values.yaml"); do
-    #echo "-------------------------" >> $output_file
-    echo "## $i" >> $output_file
-    #echo "-------------------------" >> $output_file
-    image=""
-    image_tag=""
-    # Create a Markdown table header
-    echo "| Image | Image Tag |" >> "$output_file"
-    echo "|-------|-----------|" >> "$output_file"
+# Clear the contents of the output file
+> "$output_file"
 
-    # Extract lines containing "image" and "imageTag"
-    cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | tr ' \t' '\n' | while IFS= read -r line; do
-        if [[ $line =~ ^image:\ (.+) ]]; then
-            image="${BASH_REMATCH[1]}"
-        elif [[ $line =~ ^imageTag:\ (.+) ]]; then
-            image_tag="${BASH_REMATCH[1]}"
-        fi
-        done < "$i"
+# Create the table header
+echo "| Image | Image Tag |" >> "$output_file"
+echo "|-------|-----------|" >> "$output_file"
+
+# Loop through the values.yaml files
+for i in $(find . -type f -name "values.yaml"); do
+    echo "## $i" >> "$output_file"
+    
+    # Extract image and imageTag values using grep
+    image=$(grep -Po 'image:\s+\K[^[:space:]]+' "$i")
+    image_tag=$(grep -Po 'imageTag:\s+\K[^[:space:]]+' "$i")
+
     # Print the extracted information as a row in the table
     echo "| $image | $image_tag |" >> "$output_file"
 done
