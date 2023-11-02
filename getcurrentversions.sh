@@ -17,7 +17,7 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "|-------|-----------|" >> "$output_file"
 
     # Extract lines containing "image" and "imageTag"
-    cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | while IFS= read -r line; do
+    cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | tr ' \t' '\n' | while IFS= read -r line; do
         if [[ $line =~ ^image:\ (.+) ]]; then
             image="${BASH_REMATCH[1]}"
         elif [[ $line =~ ^imageTag:\ (.+) ]]; then
