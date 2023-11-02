@@ -6,8 +6,7 @@
 platform
 elera-client
 elera-client-nginx
-data-loader |
-| 1.19.1
+data-loader | 1.19.1
 1.19.0
 0.18.0
 1.4.0
@@ -16,12 +15,10 @@ data-loader |
 | Image | ImageTag |
 |-------|----------|
 | ingress
-platform |
-| 1.4.0
+platform | 1.4.0
 1.6.0 |
 ## ./apache/values.yaml
 | Image | ImageTag |
 |-------|----------|
-| nginx |
-| 1.4.1
+| nginx | 1.4.1
 1.4.1 |
