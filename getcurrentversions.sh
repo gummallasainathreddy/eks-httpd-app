@@ -19,9 +19,11 @@ for i in $(find . -type f -name "values.yaml"); do
     # Extract lines containing "image" and "imageTag"
     cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | tr ' \t' '\n' | while IFS= read -r line; do
         if [[ $line =~ ^image:\ (.+) ]]; then
-            export image="${BASH_REMATCH[1]}"
+            image="${BASH_REMATCH[1]}"
+            echo $image
         elif [[ $line =~ ^imageTag:\ (.+) ]]; then
-            export image_tag="${BASH_REMATCH[1]}"
+            image_tag="${BASH_REMATCH[1]}"
+            echo $image_tag
         fi
         done 
         
