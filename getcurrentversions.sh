@@ -20,10 +20,10 @@ for i in $(find . -type f -name "values.yaml"); do
     cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | tr ' \t' '\n' | while IFS= read -r line; do
         if [[ $line =~ ^image:\ (.+) ]]; then
             image="${BASH_REMATCH[1]}"
-            echo $image
+            echo $image >> "$output_file"
         elif [[ $line =~ ^imageTag:\ (.+) ]]; then
             image_tag="${BASH_REMATCH[1]}"
-            echo $image_tag
+            echo $image_tag >> "$output_file"
         fi
         done 
         
