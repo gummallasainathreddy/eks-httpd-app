@@ -1,4 +1,13 @@
 # Current Versions In Each Environment
-| Environment | Image | Image Tag |
-|-------------|-------|-----------|
-| apache | nginx | 1.4.1 |
+## ./elera-eu-colruyt/values.yaml
+| Image | Image Tag |
+|-------|-----------|
+|  |  |
+## ./tomcat/values.yaml
+| Image | Image Tag |
+|-------|-----------|
+|  |  |
+## ./apache/values.yaml
+| Image | Image Tag |
+|-------|-----------|
+|  |  |
