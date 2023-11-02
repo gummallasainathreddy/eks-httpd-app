@@ -18,8 +18,6 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "|-------|-----------|" >> "$output_file"
     # Print the extracted information as a row in the table
     echo "| $image | $imageTag |" >> "$output_file"
-    echo "$image" >> "$output_file"
-    echo "$image_Tag" >> "$output_file"
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
