@@ -2,12 +2,12 @@
 ## ./elera-eu-colruyt/values.yaml
 | Image | Image Tag |
 |-------|-----------|
-| : : |
+| : | : |
 ## ./tomcat/values.yaml
 | Image | Image Tag |
 |-------|-----------|
-| : : |
+| : | : |
 ## ./apache/values.yaml
 | Image | Image Tag |
 |-------|-----------|
-| : : |
+| : | : |
