@@ -2,8 +2,8 @@ name: Get current image versions
 
 on:
   push:
-  branches:
-    - main  # Adjust the branch name to match your main branch
+    branches:
+      - main  # Adjust the branch name to match your main branch
   schedule:
     # runs tests every day at 4am
     - cron: '0 4 * * *'
