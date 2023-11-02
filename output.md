@@ -10,10 +10,10 @@ data-loader | 1.19.1
 0.18.0
 1.4.0
 1.19.0 |
+## ./apache/values.yaml
+| nginx | 1.4.1
+1.4.1 |
 ## ./tomcat/values.yaml
 | ingress
 platform | 1.4.0
 1.6.0 |
-## ./apache/values.yaml
-| nginx | 1.4.1
-1.4.1 |
