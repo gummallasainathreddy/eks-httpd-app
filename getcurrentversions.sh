@@ -10,8 +10,8 @@ for i in $(find . -type f -name "values.yaml"); do
     #echo "-------------------------" >> $output_file
     echo "## $i" >> $output_file
     #echo "-------------------------" >> $output_file
-    image="sai"
-    image_tag="1.2.0"
+    image=""
+    image_tag=""
     # Create a Markdown table header
     echo "| Image | Image Tag |" >> "$output_file"
     echo "|-------|-----------|" >> "$output_file"
@@ -19,11 +19,12 @@ for i in $(find . -type f -name "values.yaml"); do
     # Extract lines containing "image" and "imageTag"
     cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | tr ' \t' '\n' | while IFS= read -r line; do
         if [[ $line =~ ^image:\ (.+) ]]; then
-            image="${BASH_REMATCH[1]}"
+            export image="${BASH_REMATCH[1]}"
         elif [[ $line =~ ^imageTag:\ (.+) ]]; then
-            image_tag="${BASH_REMATCH[1]}"
+            export image_tag="${BASH_REMATCH[1]}"
         fi
-        done < "$i"
+        done 
+        
     # Print the extracted information as a row in the table
     echo "| $image | $image_tag |" >> "$output_file" 
 done
