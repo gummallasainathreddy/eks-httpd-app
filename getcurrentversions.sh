@@ -15,9 +15,14 @@ for i in $(find . -type f -name "values.yaml"); do
     # Create a Markdown table header
     echo "| Image | ImageTag |" >> "$output_file"
     echo "|-------|----------|" >> "$output_file"
+
+    if [ -n "$image" ] && [ -n "$imageTag" ]; then
+       # Print the extracted information as a row in the table
+       echo "| $image | $imageTag |" >> "$output_file"
+    fi
         
     # Print the extracted information as a row in the table
-    echo "| $image | $imageTag |" >> "$output_file" 
+    #echo "| $image | $imageTag |" >> "$output_file" 
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
