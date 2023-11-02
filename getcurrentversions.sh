@@ -10,15 +10,11 @@ for i in $(find . -type f -name "values.yaml"); do
     #echo "-------------------------" >> $output_file
     echo "## $i" >> $output_file
     #echo "-------------------------" >> $output_file
-    image=""
-    image_tag=""
+    image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
+    imageTag=$(grep -o 'imageTag:\s\+\S\+' "$i" | awk '{print $2}')
     # Create a Markdown table header
     echo "| Image | Image Tag |" >> "$output_file"
     echo "|-------|-----------|" >> "$output_file"
-
-    # Extract lines containing "image" and "imageTag"
-    x= `cat "$i" | grep -E 'image:|imageTag:' | sed -e 's/^[ \t]*//' | tr ' \t' '\n'`
-    echo $x 
         
     # Print the extracted information as a row in the table
     echo "| $image | $image_tag |" >> "$output_file" 
