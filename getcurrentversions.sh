@@ -12,14 +12,13 @@ echo "|-------|-----------|" >> "$output_file"
 
 # Loop through the values.yaml files
 for i in $(find . -type f -name "values.yaml"); do
-    echo "## $i" >> "$output_file"
+    image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
+    image_tag=$(grep -o 'imageTag:\s\+\S\+' "$i" | awk '{print $2}')
     
-    # Extract image and imageTag values using grep
-    image=$(grep -Po 'image:\s+\K[^[:space:]]+' "$i")
-    image_tag=$(grep -Po 'imageTag:\s+\K[^[:space:]]+' "$i")
-
-    # Print the extracted information as a row in the table
-    echo "| $image | $image_tag |" >> "$output_file"
+    if [ -n "$image" ] && [ -n "$image_tag" ]; then
+        echo "## $i" >> "$output_file"
+        echo "| $image | $image_tag |" >> "$output_file"
+    fi
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
