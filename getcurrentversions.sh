@@ -16,12 +16,10 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "| Image | ImageTag |" >> "$output_file"
     echo "|-------|----------|" >> "$output_file"
 
-    if [ -n "$image" ] && [ -n "$imageTag" ]; then
-       # Print the extracted information as a row in the table
-       echo "| $image |" >> "$output_file"
-       echo "| $imageTag |" >> "$output_file"
-    fi
-        
+    
+    # Print the extracted information as a row in the table
+    echo "| $image |" >> "$output_file"
+    echo "| $imageTag |" >> "$output_file"        
     # Print the extracted information as a row in the table
     #echo "| $image | $imageTag |" >> "$output_file" 
 done
