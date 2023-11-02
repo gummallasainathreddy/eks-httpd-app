@@ -10,7 +10,7 @@ for i in $(find -name values.yaml); do
     echo "------------------------------------" >> "$output_file"
     echo "$i" >> "$output_file"
     #echo "------------------------------------" >> "$output_file"
-    cat "$i" | grep 'image\|imageTag\|#renovate' | sed -e 's/^[ \t]*//' >> "$output_file"
+    cat "$i" | grep 'image|imageTag\|#renovate' | sed -e 's/^[ \t]*//' >> "$output_file"
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
