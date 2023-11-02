@@ -13,11 +13,11 @@ for i in $(find . -type f -name "values.yaml"); do
     image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
     imageTag=$(grep -o 'imageTag:\s\+\S\+' "$i" | awk '{print $2}')
     # Create a Markdown table header
-    echo "| Image | Image Tag |" >> "$output_file"
-    echo "|-------|-----------|" >> "$output_file"
+    echo "| Image | ImageTag |" >> "$output_file"
+    echo "|-------|----------|" >> "$output_file"
         
     # Print the extracted information as a row in the table
-    echo "| $image | $image_tag |" >> "$output_file" 
+    echo "| $image | $imageTag |" >> "$output_file" 
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
