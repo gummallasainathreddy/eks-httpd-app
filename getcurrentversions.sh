@@ -3,22 +3,22 @@
 # Define the output file name
 output_file="output.md"
 
-# Clear the contents of the output file
-> "$output_file"
-
-# Create the table header
-echo "| Image | Image Tag |" >> "$output_file"
-echo "|-------|-----------|" >> "$output_file"
-
-# Extract image and imageTag values from the values.yaml file
-image=$(grep -o 'image:\s\+\S\+' values.yaml | awk '{print $2}')
-imageTag=$(grep -o 'imageTag:\s\+\S\+' values.yaml | awk '{print $2}')
-
-# Check if both image and imageTag are non-empty
-if [ -n "$image" ] && [ -n "$imageTag" ]; then
+# Clear the contents of the output file 
+> $output_file
+echo "# Current Versions In Each Environment" >> $output_file
+for i in $(find . -type f -name "values.yaml"); do
+    #echo "-------------------------" >> $output_file
+    echo "## $i" >> $output_file
+    #echo "-------------------------" >> $output_file
+    cat "$i" | grep 'image|imageTag\|#renovate' | sed -e 's/^[ \t]*//'
+    image=""
+    imageTag="
+    # Create a Markdown table header
+    echo "| Image | Image Tag |" >> "$output_file"
+    echo "|-------|-----------|" >> "$output_file"
     # Print the extracted information as a row in the table
     echo "| $image | $imageTag |" >> "$output_file"
-fi
+done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
     git add "$output_file"
