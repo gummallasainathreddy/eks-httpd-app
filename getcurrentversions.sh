@@ -4,24 +4,27 @@
 output_file="output.md"
 
 # Clear the contents of the output file 
-> $output_file
-echo "# Current Versions In Each Environment" >> $output_file
+> "$output_file"
+
+# Create the table header
+echo "| Image | Image Tag |" >> "$output_file"
+echo "|-------|-----------|" >> "$output_file"
+
+# Loop through the values.yaml files
 for i in $(find . -type f -name "values.yaml"); do
-    #echo "-------------------------" >> $output_file
-    echo "## $i" >> $output_file
-    #echo "-------------------------" >> $output_file
+    # Extract the image value
     image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
-    imageTag=$(grep -o 'imageTag:\s\+\S\+' "$i" | awk '{print $2}')
-    # Create a Markdown table header
-    echo "| Image | ImageTag |" >> "$output_file"
-    echo "|-------|----------|" >> "$output_file"
     
-    # Print the extracted information as a row in the table
-    #echo "| $image |" >> "$output_file"
-    #echo "| $imageTag |" >> "$output_file"        
-    # Print the extracted information as a row in the table
-    echo "| $image | $imageTag |" >> "$output_file" 
+    # Extract the imageTag value using grep
+    imageTag=$(grep 'imageTag:' "$i" | awk -F': ' '{print $2}')
+    
+    # Check if both image and imageTag are non-empty
+    if [ -n "$image" ] && [ -n "$imageTag" ]; then
+        # Print the extracted information as a row in the table
+        echo "| $image | $imageTag |" >> "$output_file"
+    fi
 done
+
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
     git add "$output_file"
