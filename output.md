@@ -1,6 +1,6 @@
 # Current Versions In Each Environment
 ## ./elera-eu-colruyt/values.yaml
-These are the current versions of this environment[elera-eu-colruyt]
+These are the current versions of this environment 
 | Image | ImageTag |
 |-------|----------|
 | elera-platform-admin-ui-all-eu
@@ -13,14 +13,14 @@ data-loader | 1.19.1
 1.4.0
 1.19.0 |
 ## ./tomcat/values.yaml
-These are the current versions of this environment[tomcat]
+These are the current versions of this environment 
 | Image | ImageTag |
 |-------|----------|
 | ingress
 platform | 1.4.0
 1.6.0 |
 ## ./apache/values.yaml
-These are the current versions of this environment[apache]
+These are the current versions of this environment 
 | Image | ImageTag |
 |-------|----------|
 | nginx | 1.4.1
