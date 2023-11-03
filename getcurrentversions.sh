@@ -20,10 +20,10 @@ for i in $(find . -type f -name "values.yaml"); do
         
     # Print the extracted information as a row in the table
     #echo "| $image | $imageTag |" >> "$output_file"
-    if [ "${#images[@]}" -eq "${#imageTags[@]}" ]; then
-       for ((i=0; i<${#images[@]}; i++)); do
+    if [ "${#image[@]}" -eq "${#imageTag[@]}" ]; then
+       for ((i=0; i<${#image[@]}; i++)); do
            # Print each image and imageTag pair as a row in the table
-           echo "| ${images[$i]} | ${imageTags[$i]} |" >> "$output_file"
+           echo "| ${image[$i]} | ${imageTag[$i]} |" >> "$output_file"
        done
     fi
 done
