@@ -10,7 +10,7 @@ data-loader | 1.19.1
 1.19.0
 0.18.0
 1.4.0
-1.19.0 |
+1.19.0 |
 ## ./tomcat/values.yaml
 | Image | ImageTag |
 |-------|----------|
