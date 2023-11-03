@@ -19,7 +19,13 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "|-------|----------|" >> "$output_file"
         
     # Print the extracted information as a row in the table
-    echo "| $image | $imageTag |" >> "$output_file" 
+    #echo "| $image | $imageTag |" >> "$output_file"
+    if [ "${#images[@]}" -eq "${#imageTags[@]}" ]; then
+       for ((i=0; i<${#images[@]}; i++)); do
+           # Print each image and imageTag pair as a row in the table
+           echo "| ${images[$i]} | ${imageTags[$i]} |" >> "$output_file"
+       done
+    fi
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
