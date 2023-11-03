@@ -1,7 +1,5 @@
-# Current Versions In Each Environment
-## ./elera-eu-colruyt/values.yaml
-| Image | ImageTag |
-|-------|----------|
+| Image | Image Tag |
+|-------|-----------|
 | elera-platform-admin-ui-all-eu
 platform
 elera-client
@@ -10,15 +8,9 @@ data-loader | 1.19.1
 1.19.0
 0.18.0
 1.4.0
-1.19.0 |
-## ./tomcat/values.yaml
-| Image | ImageTag |
-|-------|----------|
+1.19.0 |
 | ingress
 platform | 1.4.0
 1.6.0 |
-## ./apache/values.yaml
-| Image | ImageTag |
-|-------|----------|
 | nginx | 1.4.1
 1.4.1 |
