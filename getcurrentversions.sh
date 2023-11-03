@@ -13,7 +13,6 @@ for i in $(find . -type f -name "values.yaml"); do
     #image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
     #imageTag=$(grep -o 'imageTag:\s\+\S\+' "$i" | awk '{print $2}')
     image_lines=$(cat "$i" | grep -E 'image:|imageTag:')
-    echo $image_lines
     # Create a Markdown table header
     echo "| Image | ImageTag |" >> "$output_file"
     echo "|-------|----------|" >> "$output_file"
