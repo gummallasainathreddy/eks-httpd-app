@@ -2,9 +2,9 @@ eu:
   nameOverride: elera-platform
   elera_common:
     dockerRegistry:
-      repository: 
+      repository: tgcseuelera.azurecr.io
       imagePullSecrets:
-        - name: 
+        - name: tgcseuelera
 
   elera_ingress:
     enabled: false
@@ -12,11 +12,13 @@ eu:
   elera_services:
     elera_admin_ui:
       image: elera-platform-admin-ui-all-eu
-      imageTag: 1.19.1
+      #renovate: image=tgcseuelera.azurecr.io/elera-platform-admin-ui-all-eu
+      imageTag: 1.19.0-2023.08.07-494-ddc4804
 
     elera_platform:
-      image: platform
-      imageTag: 1.19.0
+      image: elera-platform-europe
+      #renovate: image=tgcseuelera.azurecr.io/elera-platform-europe
+      imageTag: 1.19.0-2023.08.07-494-ddc4804
       imageLayered: true
       readinessProbe:
         initialDelaySeconds: 60
@@ -26,28 +28,31 @@ eu:
           - tgcp.mock.shipping=true
 
     elera_client:
-      image: elera-client
-      imageTag: 0.18.0
+      image: colruyt-elera-selfservice-client
+      #renovate: image=tgcseuelera.azurecr.io/colruyt-elera-selfservice-client
+      imageTag: 0.18.0-2023.08.30-435-49bfb38
       enabled: true
       extraNginxConf:
         endOfServerSection: |
           # Add missing authorization entries
           location /authorization/alternateLogin {
-            proxy_pass      
+            proxy_pass      http://elera-platform-elera-platform:8080/authorization/alternateLogin;
           }
           location /authorization/config {
-            proxy_pass      
+            proxy_pass      http://elera-platform-elera-platform:8080/authorization/config;
           }
 
   elera_nginx:
-    image: elera-client-nginx
+    image: elera-client
+    #renovate: image=tgcseuelera.azurecr.io/elera-client-nginx
     imageTag: 1.4.0
     disableLoadBalancer: true
 
   data_loader:
     enabled: false
-    image: data-loader
-    imageTag: 1.19.0
+    image: elera-platform-data-loader-europe
+    #renovate: image=tgcseuelera.azurecr.io/elera-platform-data-loader-europe
+    imageTag: 1.19.0-2023.08.07-494-ddc4804
     imageLayered: false
     command:
       extraArguments:
