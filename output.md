@@ -2,11 +2,11 @@
 ## ./elera-eu-colruyt/values.yaml
 | Image | ImageTag |
 |-------|----------|
-| elera-platform-admin-ui-all-eu | 1.19.1 |
-| platform | 1.19.0 |
-| elera-client | 0.18.0 |
-| elera-client-nginx | 1.4.0 |
-| data-loader | 1.19.0 |
+| elera-platform-admin-ui-all-eu | 1.19.0-2023.08.07-494-ddc4804 |
+| elera-platform-europe | 1.19.0-2023.08.07-494-ddc4804 |
+| colruyt-elera-selfservice-client | 0.18.0-2023.08.30-435-49bfb38 |
+| elera-client | 1.4.0 |
+| elera-platform-data-loader-europe | 1.19.0-2023.08.07-494-ddc4804 |
 ## ./tomcat/values.yaml
 | Image | ImageTag |
 |-------|----------|
