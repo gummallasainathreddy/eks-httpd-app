@@ -9,7 +9,7 @@ echo "# Current Versions In Each Environment" >> $output_file
 for i in $(find . -type f -name "values.yaml"); do
     #echo "-------------------------" >> $output_file
     echo "## $i" >> $output_file
-    echo "These are the current versions of this environment[`$i`]"
+    echo "These are the current versions of this environment[`$i`]" >> $output_file
     #echo "-------------------------" >> $output_file
     image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
     imageTag=$(grep -o 'imageTag:\s\+\S\+' "$i" | awk '{print $2}')
