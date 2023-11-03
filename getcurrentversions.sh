@@ -7,14 +7,17 @@ output_file="output.md"
 > $output_file
 echo "# Current Versions In Each Environment" >> $output_file
 for i in $(find . -type f -name "values.yaml"); do
-    # Extract lines containing "image" and "imageTag"
+    #echo "-------------------------" >> $output_file
+    echo "## $i" >> $output_file
+    #echo "-------------------------" >> $output_file
+    #image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
+    #imageTag=$(grep -o 'imageTag:\s\+\S\+' "$i" | awk '{print $2}')
     image_lines=$(cat "$i" | grep -E 'image:|imageTag:')
-
+   
     # Create a Markdown table header
     echo "| Image | ImageTag |" >> "$output_file"
-    echo "|-------|---------|" >> "$output_file"
+    echo "|-------|----------|" >> "$output_file"
 
-    # Use a while loop to process the image and imageTag values
     while read -r line; do
         if [[ $line =~ ^image:\ (.+) ]]; then
             image="${BASH_REMATCH[1]}"
@@ -24,6 +27,9 @@ for i in $(find . -type f -name "values.yaml"); do
             echo "| $image | $imageTag |" >> "$output_file"
         fi
     done <<< "$image_lines"
+        
+    # Print the extracted information as a row in the table
+    #echo "| $image | $imageTag |" >> "$output_file" 
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
