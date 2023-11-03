@@ -11,7 +11,7 @@ for i in $(find . -type f -name "values.yaml"); do
     echo "## $i" >> $output_file
     directory_name=$(basename "$(dirname "$i")")
     #echo "## $directory_name" >> $output_file
-    echo "These are the current versions of this environment `$directory_name`" >> $output_file
+    echo "These are the current versions of this environment $directory_name" >> $output_file
     #echo "## $i" >> $output_file
     #echo "-------------------------" >> $output_file
     image=$(grep -o 'image:\s\+\S\+' "$i" | awk '{print $2}')
