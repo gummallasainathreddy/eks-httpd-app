@@ -21,4 +21,4 @@ jobs:
           chmod +x ./getcurrentversions.sh
       - name: Run the script
         run: |
-          bash -e ./getcurrentversions.sh
+          bash ./getcurrentversions.sh
