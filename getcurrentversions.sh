@@ -5,12 +5,12 @@ output_file="output.md"
 
 # Clear the contents of the output file 
 > $output_file
-echo "# Current Versions In Each Environment" >> $output_file
+echo "# Current Versions In Each Environment" >> "$output_file"
 for i in $(find . -type f -name "values.yaml"); do
     
-    echo "## $i" >> $output_file
+    echo "## $i" >> "$output_file"
     directory_name=$(basename "$(dirname "$i")")
-    echo "These are the current versions of this environment {**$directory_name**}" >> $output_file
+    echo "These are the current versions of this environment {**$directory_name**}" >> "$output_file"
     image_lines=$(cat "$i" | grep -E 'image:|imageTag:')
     # Create a Markdown table header
     echo "| Image | ImageTag |" >> "$output_file"
