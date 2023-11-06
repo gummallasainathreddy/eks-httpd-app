@@ -7,7 +7,9 @@ output_file="output.md"
 > $output_file
 echo "# Current Versions In Each Environment" >> $output_file
 for i in $(find . -type f -name "values.yaml"); do
+    
     echo "## $i" >> $output_file
+    directory_name=$(basename "$(dirname "$i")")
     echo "These are the current versions of this environment {**$directory_name**}" >> $output_file
     image_lines=$(cat "$i" | grep -E 'image:|imageTag:')
     # Create a Markdown table header
@@ -22,7 +24,7 @@ for i in $(find . -type f -name "values.yaml"); do
             # Print the extracted information as a row in the table
             echo "| $image | $imageTag |" >> "$output_file"
         fi
-    done <<< "$image_lines"
+    done <<< "$image_lines" 
 done
 if ! git diff --quiet -- "$output_file"; then
     # Add, commit, and push the file to the GitHub repository
